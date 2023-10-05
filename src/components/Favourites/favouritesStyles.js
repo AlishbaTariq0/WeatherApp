@@ -11,9 +11,8 @@ const favouritesStyles = StyleSheet.create({
   },
 
   title: {
-    fontSize: wp(8),
+    fontSize: wp(7),
     fontWeight: 'bold',
-    // marginBottom: wp(16),
   },
 
   listItem: {
@@ -26,7 +25,7 @@ const favouritesStyles = StyleSheet.create({
   },
 
   locationName: {
-    fontSize: wp(8),
+    fontSize: wp(7),
   },
   removeButton: {
     backgroundColor: 'red',
@@ -44,12 +43,13 @@ const favouritesStyles = StyleSheet.create({
  favouritesIcon: {
     width: wp(8),
     height: wp(7),
-    marginTop: wp(5),
+    marginTop: wp(-9),
     resizeMode: 'contain',
     // backgroundColor: 'blue',
     // marginLeft: wp(),
     tintColor: 'black',
-    marginLeft: wp(4),
+    // marginRight: wp(10),
+    marginLeft: wp(-88),
     marginBottom: wp(1.5)
    },
 

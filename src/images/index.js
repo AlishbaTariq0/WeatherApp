@@ -14,7 +14,8 @@ const images = {
     feels_Like: require('./feelslike2.png'),
     background: require('./backg.webp'),
     favorites: require('./favourites2.png'),
-    favourites: require('./favourites.png')
+    favourites: require('./favourites.png'),
+    backgroundd: require('./bg2.jpg')
 }
 
 export default images;

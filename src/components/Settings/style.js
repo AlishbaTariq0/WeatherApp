@@ -24,12 +24,12 @@ textContainer: {
 settingsIcon: {
     height: wp(6),
     width: wp(7),
-    marginTop: wp(3),
+    marginTop: wp(8),
     resizeMode: 'contain',
     // backgroundColor: 'blue',
-    marginLeft: wp(50),
+    marginLeft: wp(66),
     tintColor: 'black',
-    marginRight: wp(5),
+    // marginRight: wp(15),
     // marginBottom: wp(1.5)
   },
 

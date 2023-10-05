@@ -1,19 +1,20 @@
 import { StyleSheet } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
-const styles = StyleSheet.create({
+const weatherStyles = StyleSheet.create({
     container: {
       flex: 0.5,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor:'white'
+      // backgroundColor:'white'
     },
 
     title: {
       fontSize: wp(5),
       fontWeight: 'bold',
-      marginTop: wp(15),
-      marginBottom: wp(5)
+      marginTop: wp(10),
+      marginBottom: wp(5),
+      color: 'white'
 
     },
 
@@ -60,4 +61,4 @@ const styles = StyleSheet.create({
       },
   });
 
-export default styles;
+export default weatherStyles;

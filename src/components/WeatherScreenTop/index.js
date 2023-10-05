@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import styles from './style';
 import images from '../../images';
+import { useNavigation } from '@react-navigation/native';
 
 function WeatherScreenTop({ weatherData, selectedUnit }) {
   const [temperatureUnit, setTemperatureUnit] = useState('°C');
+  const navigation = useNavigation();
+
 
   useEffect(() => {
     // Update the temperature unit based on the selectedUnit
@@ -28,34 +31,38 @@ function WeatherScreenTop({ weatherData, selectedUnit }) {
     };
   }, []);
 
-  const formattedDayTime = currentDateTime.toLocaleString('en-US', {
+  // Format the date and time using the city's timezone
+  const formattedDayTime = new Intl.DateTimeFormat('en-US', {
+    // timeZone: cityTimeZone,
     weekday: 'long',
     hour: '2-digit',
     minute: '2-digit',
-  });
+  }).format(currentDateTime);
 
   return (
+  //   <ImageBackground
+  //   source={images.backgroundd} 
+  //   style={{ flex: 1 }} 
+  // >
     <View style={styles.container}>
- 
 
-     {/* Settings Icon */}
-      {/* <TouchableOpacity onPress={handleSettingsPress}>
-        <Image source={images.settings} style={styles.settingsIcon} />
-      </TouchableOpacity> */}
       <View style={styles.imageContainer}>
-        <Image source={images.cloud} style={styles.weatherImage} />
+        <Image source={images.clear} style={styles.weatherImage} />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.cityName}>{weatherData?.city?.name}</Text>
         <Text style={styles.temperature}>
           {temperatureInCelsius}
-          {temperatureUnit} {/* Display temperature unit */}
-          <Text style={styles.weatherDescription}>{weatherDescription}</Text>
+          {temperatureUnit} 
+          <Text style={styles.weatherDescription}> {weatherDescription}</Text>
         </Text>
         <Text style={styles.dateTime}>{formattedDayTime}</Text>
       </View>
     </View>
+    // </ImageBackground>
   );
 }
 
 export default WeatherScreenTop;
+
+

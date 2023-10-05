@@ -6,7 +6,7 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
 
   deg: {
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     color: 'white',
     padding: 20,
     borderRadius: 5,
+    color: 'white'
   },
 
   backgroundWrapper: {
@@ -66,6 +67,24 @@ const styles = StyleSheet.create({
     marginLeft: wp(80),
     tintColor: 'black'
   },
+
+  screenTitle: {
+    // backgroundColor: 'white',
+    fontSize: wp(5.5),
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: wp(10),
+    marginBottom: wp(2),
+    color: 'white'
+  },
+
+  weekcontainer: {
+      // marginTop: wp(5),
+      // backgroundColor: 'white',
+      color: 'white'
+  },
+
+ 
 });
 
 export default styles;

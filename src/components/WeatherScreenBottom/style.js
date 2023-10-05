@@ -6,7 +6,7 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex: wp(0.9),
-    backgroundColor:'white', 
+    // backgroundColor:'white', 
     width: wp(100),
     // marginTop: wp()
     // border: wp(2),

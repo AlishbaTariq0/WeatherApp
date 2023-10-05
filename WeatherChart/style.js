@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     marginBottom: wp(3),
     borderWidth: wp(0.3),
     borderColor: 'purple',
+    
 
   },
   chart: {

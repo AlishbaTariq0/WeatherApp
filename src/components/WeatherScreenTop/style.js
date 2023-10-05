@@ -6,7 +6,7 @@ import {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     marginTop: wp(1),
     width: wp(100),
     // border: wp(2),
@@ -18,17 +18,21 @@ const styles = StyleSheet.create({
 
   cityName: {
     fontSize: wp(8),
+    color: 'white', // This sets the text color to white
+  color: 'white', // This sets the text color to white
 
   },
 
   weatherDescription: {
-    fontSize: wp(8)
+    fontSize: wp(8),
+    color: 'white', // This sets the text color to white
+
   },
 
   temperature: {
     fontSize: wp(13),
     marginLeft: wp(-1.5),
-    // color: 'white'
+    color: 'white'
   },
 
   textContainer: {
@@ -39,7 +43,9 @@ const styles = StyleSheet.create({
   },
 
   dateTime: {
-    fontSize: wp(5)
+    fontSize: wp(5),
+    color: 'white', // This sets the text color to white
+
   },
   
   imageContainer: {
@@ -65,6 +71,18 @@ const styles = StyleSheet.create({
     marginLeft: wp(80),
     tintColor: 'black'
   },
+
+  favouritesIcon: {
+    width: wp(8),
+    height: wp(7),
+    marginTop: wp(5),
+    resizeMode: 'contain',
+    // backgroundColor: 'blue',
+    // marginLeft: wp(),
+    tintColor: 'black',
+    marginLeft: wp(4),
+    marginBottom: wp(1.5)
+   },
 
 });
 

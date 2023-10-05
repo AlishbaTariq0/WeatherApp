@@ -1,5 +1,5 @@
 import React from 'react';
-import { View , ScrollView} from 'react-native';
+import { View , ScrollView, Dimensions} from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import styles from './style';
 
