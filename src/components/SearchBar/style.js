@@ -54,8 +54,95 @@ searchButton: {
 
   searchButtonHover: {
     backgroundColor: '#0056b3'
-  }
-});
+  },
 
+  dropdownButton: {
+    padding: 10,
+    marginRight: 10,
+    // backgroundColor: 'white',
+    marginTop: 20,
+    width: 200,
+    height: 150,
+    position: 'relative', // Set the position to relative
+    zIndex: 1, // Increase the zIndex to make it appear over other elements
+  },
+
+  modalContainer: {
+    flex: 1,
+    marginTop: wp(20),
+    // marginBottom: wp(128),
+    justifyContent: 'flex-start', // Align to the top
+    alignItems: 'flex-end', // Align to the right
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+  },
+  dropdownContainer: {
+    backgroundColor: 'white',
+    padding: wp(5),
+    borderRadius: wp(1.8),
+    width: wp(50), // Customize the width as needed
+    marginTop: wp(10), // Adjust the top margin as needed to position it below the three dots button
+    marginRight: wp(2)
+  },
+  dropdownTitle: {
+    fontSize: wp(8),
+    fontWeight: 'bold',
+    marginBottom: wp(2),
+  },
+  favoriteCityText: {
+    fontSize: wp(5),
+    marginBottom: wp(1.5),
+  },
+  closeButtonText: {
+    fontSize: wp(5),
+    color: 'white', // Customize the color as needed
+    textAlign: 'center',
+    fontWeight: 'bold',
+    borderStyle: 'solid',
+    backgroundColor: 'red',
+    borderRadius: wp(0.5),
+    borderWidth: wp(0.1),
+    height: wp(7),
+    marginTop: wp(2),
+    },
+    weatherInfoContainer: {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+      padding: wp(10),
+      // alignItems: 'center',
+      marginTop: wp(5),
+      backgroundColor: 'lightblue',
+      borderStyle: 'solid',
+      borderColor: 'red',
+      borderWidth: wp(0.2),
+      marginRight: wp(4),
+      marginLeft: wp(4),
+      borderRadius: wp(5)
+    },
+    weatherInfoText: {
+      color: 'black',
+      fontSize: wp(10),
+    },
+
+    favoriteCitiesWeatherContainer: {
+      marginTop: wp(8),
+      padding: wp(10),
+      backgroundColor: 'white', // or any other background color
+      borderRadius: wp(8),
+      marginRight: wp(2),
+      marginLeft: wp(2),
+    },
+    
+    favoriteCitiesContainer: {
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      marginTop: wp(4), // Adjust the spacing
+    },
+  
+    favoriteCityBox: {
+      backgroundColor: 'rgba(255, 255, 255, 0.7)', // Box background color with transparency
+      padding: wp(8),
+      margin: wp(3), // Adjust the spacing,
+      borderRadius: wp(5)
+    },
+});
 
 export default styles;

@@ -31,17 +31,18 @@
 // const store = createStore(rootReducer, applyMiddleware(...middleware));
 
 // export default store;
-
-// Store.js// Store.js
+// store.js
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer from '../Reducers';
-import rootSaga from '../../saga/RootSaga';
+import rootReducer from '../RootReducers';
+import { watchFetchWeeklyWeather } from '../../saga/WeeklyWeatherSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(watchFetchWeeklyWeather);
 
 export default store;
+
+

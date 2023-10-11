@@ -1,4 +1,4 @@
-// rootSaga.js
+// RootSaga.js
 import { all } from 'redux-saga/effects';
 import watchFetchWeather from '../WeatherSaga';
 
