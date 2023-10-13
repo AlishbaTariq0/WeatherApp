@@ -1,6 +1,6 @@
 const images = {
     clear: require('./sunn.png'),
-    cloud: require('./cloud.png'),
+    clouds: require('./cloud.png'),
     rain: require('./rain.png'),
     humidity: require('./humidity.png'),
     humidityy: require('./humidity2.png'),

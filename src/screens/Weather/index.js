@@ -195,7 +195,7 @@
 // export default connect(mapStateToProps, mapDispatchToProps)(Weather);
 
 
-
+// correct for last time
 
 
 import React, { useEffect, useState } from 'react';
@@ -220,6 +220,7 @@ const Weather = ({ route, navigation, addToFavorites }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedUnit, setSelectedUnit] = useState(true);
+  
 
   async function getWeatherData() {
     setLoading(true);
@@ -244,11 +245,10 @@ const Weather = ({ route, navigation, addToFavorites }) => {
   //   addToFavorites(cityName);
   // };
 
-  const handleAddToFavorites = () => {
-    // Dispatch an action to add the current city to favorites
-    addToFavorites({ name: cityName, temperature });
-  };
-  
+    const handleAddToFavorites = () => {
+      addToFavorites({ name: cityName, temperature });
+    };
+    
 
   if (loading || weatherData === null) {
     return <ActivityIndicator size="large" />;
@@ -297,3 +297,8 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Weather);
+
+
+
+
+

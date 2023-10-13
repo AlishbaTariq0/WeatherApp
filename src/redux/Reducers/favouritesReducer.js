@@ -1,11 +1,11 @@
-// favoriteCitiesReducer.js
+// // favoriteCitiesReducer.js
 
 import { ADD_TO_FAVORITES } from "../Actions/actionType";
+import { REMOVE_FAVORITE_CITY } from '../Actions/actionType';
 
 const initialState = {
   favoriteCities: [],
 };
-
 
 const favoriteCitiesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,11 +14,17 @@ const favoriteCitiesReducer = (state = initialState, action) => {
         ...state,
         favoriteCities: [...state.favoriteCities, action.payload],
       };
-    // Handle other action types if needed
+      case REMOVE_FAVORITE_CITY:
+      return {
+        ...state,
+        favoriteCities: state.favoriteCities.filter(city => city !== action.payload),
+      };
+
+
+    // ... other cases
     default:
       return state;
   }
 };
-
 
 export default favoriteCitiesReducer;

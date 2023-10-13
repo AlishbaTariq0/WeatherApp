@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image } from 'react-native';
 import styles from './weatherStyles';
-import images from '../../images'; // Import your images object
+import images from '../../images'; 
 
 const HourlyForecast = () => {
   const [hourlyData, setHourlyData] = useState([]);
@@ -55,7 +55,7 @@ const renderItem = ({ item }) => {
   // Map the weather condition to an image key (lowercase)
   const imageMappings = {
     'clear': 'clear',
-    'clouds': 'cloud',
+    'clouds': 'clouds',
     'rain': 'rain',
     // Add more mappings as needed
   };

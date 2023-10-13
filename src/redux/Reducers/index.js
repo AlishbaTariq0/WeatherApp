@@ -1,9 +1,8 @@
 // reducers/rootReducer.js
 import { combineReducers } from 'redux';
 import searchBarReducer from './searchbarReducer';
-import favoriteCitiesReducer from './favouritesReducer';
-import weatherReducer from './weatherReducer';
-
+import favoriteCitiesReducer from './reducers/favouritesReducer';
+import weatherReducer from './reducers/weatherReducer';
 
 const rootReducer = combineReducers({
   searchBar: searchBarReducer,

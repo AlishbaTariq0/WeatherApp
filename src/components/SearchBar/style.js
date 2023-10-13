@@ -92,6 +92,30 @@ searchButton: {
     fontSize: wp(5),
     marginBottom: wp(1.5),
   },
+
+  cityNameText: {
+    fontSize: wp(10),
+    fontWeight: 'bold',
+    color: 'white',
+    marginLeft: wp(1),
+    marginBottom: wp(1)
+  },
+
+  temperatureText: {
+    fontSize: wp(5.5),
+    color: 'white',
+    marginTop: wp(1),
+    marginLeft: wp(1)
+  },
+
+  feelsLikeText: {
+    fontSize: wp(5.5),
+    color: 'white',
+    // color: 'black',
+    marginTop: wp(1),
+    marginLeft: wp(1)
+  },
+
   closeButtonText: {
     fontSize: wp(5),
     color: 'white', // Customize the color as needed
@@ -138,11 +162,46 @@ searchButton: {
     },
   
     favoriteCityBox: {
-      backgroundColor: 'rgba(255, 255, 255, 0.7)', // Box background color with transparency
-      padding: wp(8),
+      // backgroundColor: 'rgba(255, 255, 255, 0.68)', // Box background color with transparency
+      backgroundColor: 'rgba(150, 60, 80, 0.2)', // Black with 40% opacity
+      padding: wp(5),
       margin: wp(3), // Adjust the spacing,
-      borderRadius: wp(5)
+      borderRadius: wp(5),
+      height: wp(36.5),
+      marginTop: wp(8),
+      width: wp(97.2),
+      marginLeft: wp(1.5),
+      borderWidth: wp(0.2), 
+      borderColor: 'white', 
     },
+
+    removeOptionText: {
+      color: "white", 
+      fontSize: wp(5),
+      fontWeight: 'bold',
+    },
+
+    removeButton: {
+    },
+  
+
+    removeButtonContainer: {
+      width: wp(100), // Adjust the desired width for the button container
+      height: wp(20), 
+      justifyContent: "center", 
+      alignItems: "center", 
+      backgroundColor: "red",
+      borderWidth: wp(0.2),
+      borderRadius: wp(4),
+      overflow: 'visible', // Allow the container to overflow
+    },
+
+    swipeout: {
+      backgroundColor: "transparent", 
+      zIndex: wp(1),
+      // width: wp(80)
+    },
+
 });
 
 export default styles;
