@@ -498,7 +498,8 @@ console.log('abc', handleAddToFavorites);
 
          <View style={styles.weekcontainer}>
            <Text style={styles.screenTitle}>Weekly Weather for {cityName}</Text>
-         
+           <WeeklyWeather cityName={cityName} />
+
          </View>
          <View>
            <WeatherScreenBottom weatherData={weatherData} />
