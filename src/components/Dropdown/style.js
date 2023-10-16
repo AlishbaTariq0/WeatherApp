@@ -25,16 +25,19 @@ const styles = StyleSheet.create({
       padding: wp(2),
       borderTopWidth: wp(0.5),
       borderColor: 'lightblue',
+      color: 'white'
     },
 
 
 
     selectedOption: {
       fontSize:wp(6),
+      color: 'white'
     },
 
     label: {
-    fontSize: wp(6.5)
+    fontSize: wp(6.5),
+    color: 'white'
     },
 
     dropdown: {

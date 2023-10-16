@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet } from 'react-native';
+import { View, Text, Switch, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Dropdown from '../Dropdown'; // Assuming you have the Dropdown component
 import styles from './style';
 import { Picker } from '@react-native-picker/picker'; // Import Picker from the new package
+import images from '../../images';
 
 const Settings = () => {
   const navigation = useNavigation();
@@ -22,6 +23,7 @@ const Settings = () => {
   };
 
   return (
+    <ImageBackground source={images.backgroundd} style={{ flex: 1 }}>
       <View style={styles.container}>
         <Text style={styles.header}>Settings</Text>
     
@@ -36,6 +38,14 @@ const Settings = () => {
           <Picker
             selectedValue={autoRefreshTime}
             onValueChange={handleAutoRefreshTimeChange}
+            style={{ color: 'white' }} // Set the color style to white for the selected value
+  itemStyle={{
+    backgroundColor: 'black', // Background color for the dropdown
+  }}
+
+  // style={{ color: 'white' }} // Set the color style for the selected value
+  // itemStyle={{ backgroundColor: 'black', color: 'white' }} // Set itemStyle for the dropdown
+  // mode="dropdown" // Set mode to "dropdown" to show the arrow icon
           >
              <Picker.Item label="Never" value="never" style={styles.pickerItem} />
     <Picker.Item label="Every Hour" value="1" style={styles.pickerItem} />
@@ -46,6 +56,7 @@ const Settings = () => {
   </Picker>
         </View>
       </View>
+      </ImageBackground>
     );
 };
 

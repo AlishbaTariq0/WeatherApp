@@ -10,7 +10,7 @@ const weatherStyles = StyleSheet.create({
     },
 
     title: {
-      fontSize: wp(5),
+      fontSize: wp(5.5),
       fontWeight: 'bold',
       marginTop: wp(10),
       marginBottom: wp(5),

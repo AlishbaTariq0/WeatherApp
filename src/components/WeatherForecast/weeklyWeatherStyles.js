@@ -7,7 +7,8 @@ const weeklyWeatherStyles  = StyleSheet.create({
   container: {
     flex: wp(1),
     flexDirection: 'column',
-    height: wp(56)
+    height: wp(56),
+    marginBottom: wp(3)
     // justifyContent: 'center',
     // paddingHorizontal: 10,
 

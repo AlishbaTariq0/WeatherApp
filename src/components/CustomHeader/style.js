@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
     height: wp(6),
     marginLeft: wp(80), 
     tintColor: 'white',
-    marginTop: wp(2)
+    marginTop: wp(2),
+    marginLeft: wp(3)
   },
   favouritesIcon: {
     width: wp(7), 
