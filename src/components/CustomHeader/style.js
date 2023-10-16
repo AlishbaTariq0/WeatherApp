@@ -20,11 +20,22 @@ const styles = StyleSheet.create({
     marginTop: wp(2)
   },
   favouritesIcon: {
+    width: wp(7), 
+    height: wp(7),
+    tintColor: 'white',
+    marginTop: wp(2),
+    borderColor: 'white',
+    // borderWidth: 1, // Adjust the width for the desired outline effect
+    // borderRadius: wp(6) / 2, // To make it circular
+  },
+
+  filledHeartOverlay: {
     width: wp(6), 
     height: wp(6),
     tintColor: 'white',
-    marginTop: wp(2)
-  },
+    marginTop: wp(2),
+    borderColor: 'white',
+  }
 });
 
   export default styles;

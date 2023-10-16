@@ -198,29 +198,232 @@
 // correct for last time
 
 
+// import React, { useEffect, useState } from 'react';
+// import { View, Text, ActivityIndicator, ScrollView, ImageBackground } from 'react-native';
+// import { connect } from 'react-redux';
+// import { addToFavorites } from '../../redux/Actions';
+// import { fetchWeatherData } from '../../helper/api';
+// import WeatherScreenTop from '../../components/WeatherScreenTop';
+// import SunriseSunset from '../../components/SunriseSunset';
+// import WeeklyWeather from '../../components/WeatherForecast/WeeklyWeather';
+// import HourlyForecast from '../../components/WeatherForecast/HourlyForecast';
+// import WeatherScreenBottom from '../../components/WeatherScreenBottom';
+// import CustomHeader from '../../components/CustomHeader';
+// import images from '../../images';
+// import weatherStyles from '../../components/WeatherForecast/weatherStyles';
+// import styles from './style';
+// import FavoriteCities from '../../components/Favourites';
+// import Settings from '../../components/Settings';
+
+// const Weather = ({ route, navigation, addToFavorites }) => {
+//   const { cityName, temperature } = route.params;
+//   const [weatherData, setWeatherData] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   const [selectedUnit, setSelectedUnit] = useState(true);
+  
+
+//   async function getWeatherData() {
+//     setLoading(true);
+
+//     try {
+//       const data = await fetchWeatherData(cityName);
+//       setWeatherData(data);
+//     } catch (error) {
+//       console.error('Error fetching weather data:', error);
+//       setWeatherData(null);
+//     }
+
+//     setLoading(false);
+//   }
+
+//   useEffect(() => {
+//     getWeatherData();
+//   }, [cityName]);
+
+//   const handleAddToFavorites = () => {
+//     addToFavorites({ name: cityName, temperature });
+//   };
+
+//   if (loading || weatherData === null) {
+//     return <ActivityIndicator size="large" />;
+//   }
+
+//   return (
+//     <ImageBackground
+//       source={images.backgroundd}
+//       style={{ flex: 1 }}
+//     >
+//       <ScrollView>
+//         <View style={styles.container}>
+//         <CustomHeader
+//   navigation={navigation}
+//   onAddToFavorites={handleAddToFavorites} // Pass the handler to the CustomHeader component
+// />
+
+//           <WeatherScreenTop weatherData={weatherData} selectedUnit={selectedUnit} />
+//           <SunriseSunset weatherData={weatherData} />
+//         </View>
+//         <View style={weatherStyles.container}>
+//           <Text style={weatherStyles.title}>Hourly Forecast for {cityName}</Text>
+//           <HourlyForecast data={weatherData.list} />
+//         </View>
+
+//         <View style={styles.weekcontainer}>
+//           <Text style={styles.screenTitle}>Weekly Weather for {cityName}</Text>
+//           {/* <WeeklyWeather weeklyData={weatherData} /> */}
+//           {/* <WeeklyWeather cityName={cityName} /> */}
+//         </View>
+//         <View>
+//           <WeatherScreenBottom weatherData={weatherData} />
+//         </View>
+//       </ScrollView>
+//     </ImageBackground>
+//   );
+// };
+
+// const mapStateToProps = (state) => ({
+//   // Add your mapStateToProps here if needed
+// });
+
+// const mapDispatchToProps = {
+//   // Add your other mapDispatchToProps here if needed
+//   addToFavorites, // Add addToFavorites to mapDispatchToProps
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Weather);
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { View, Text, ActivityIndicator, ScrollView, ImageBackground } from 'react-native';
+// import { connect } from 'react-redux';
+// import { addToFavorites } from '../../redux/Actions';
+// import { fetchWeatherData } from '../../helper/api';
+// import WeatherScreenTop from '../../components/WeatherScreenTop';
+// import SunriseSunset from '../../components/SunriseSunset';
+// import WeeklyWeather from '../../components/WeatherForecast/WeeklyWeather';
+// import HourlyForecast from '../../components/WeatherForecast/HourlyForecast';
+// import WeatherScreenBottom from '../../components/WeatherScreenBottom';
+// import CustomHeader from '../../components/CustomHeader';
+// import images from '../../images';
+// import weatherStyles from '../../components/WeatherForecast/weatherStyles';
+// import styles from './style';
+// import { addCityWeatherToFavorites } from '../../redux/Actions';
+
+// const Weather = ({ route, navigation, addToFavorites, addCityWeatherToFavorites }) => {
+//   const { cityName, temperature } = route.params;
+//   const [weatherData, setWeatherData] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   const [selectedUnit, setSelectedUnit] = useState(true);
+//   const [isFaviconPressed, setIsFaviconPressed] = useState(false); // State to manage the favorite icon
+
+//   async function getWeatherData() {
+//     setLoading(true);
+
+//     try {
+//       const data = await fetchWeatherData(cityName);
+//       setWeatherData(data);
+//     } catch (error) {
+//       console.error('Error fetching weather data:', error);
+//       setWeatherData(null);
+//     }
+
+//     setLoading(false);
+//   }
+
+//   useEffect(() => {
+//     getWeatherData();
+//   }, [cityName]);
+
+//   const handleAddToFavorites = () => {
+//     setIsFaviconPressed(true); // Set the favorite icon as solid
+//     addToFavorites({ name: cityName, temperature });
+  
+//     // Create an object with the city's weather details
+//     const cityWeatherData = {
+//       city: cityName,
+//       temperature,
+//     };
+//     // Dispatch the action to add the city's weather to the favorites
+//     addCityWeatherToFavorites(cityWeatherData);
+//   };
+
+//   if (loading || weatherData === null) {
+//     return <ActivityIndicator size="large" />;
+//   }
+
+//   return (
+//     <ImageBackground
+//       source={images.backgroundd}
+//       style={{ flex: 1 }}
+//     >
+//       <ScrollView>
+//         <View style={styles.container}>
+//           <CustomHeader
+//             navigation={navigation}
+//             onAddToFavorites={handleAddToFavorites}
+//           />
+
+//           <WeatherScreenTop weatherData={weatherData} selectedUnit={selectedUnit} />
+//           <SunriseSunset weatherData={weatherData} />
+//         </View>
+//         <View style={weatherStyles.container}>
+//           <Text style={weatherStyles.title}>Hourly Forecast for {cityName}</Text>
+//           <HourlyForecast data={weatherData.list} />
+//         </View>
+
+//         <View style={styles.weekcontainer}>
+//           <Text style={styles.screenTitle}>Weekly Weather for {cityName}</Text>
+//           {/* <WeeklyWeather weeklyData={weatherData} /> */}
+//           {/* <WeeklyWeather cityName={cityName} /> */}
+//         </View>
+//         <View>
+//           <WeatherScreenBottom weatherData={weatherData} />
+//         </View>
+//       </ScrollView>
+//     </ImageBackground>
+//   );
+// };
+
+// const mapStateToProps = (state) => ({
+//   // Add your mapStateToProps here if needed
+// });
+
+// const mapDispatchToProps = {
+//   addCityWeatherToFavorites, // Add the new action to mapDispatchToProps
+//   addToFavorites, // Add addToFavorites to mapDispatchToProps
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Weather);
+
+
 import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, ScrollView, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
-import { addToFavorites } from '../../redux/Actions';
+import { addToFavorites, addCityWeatherToFavorites } from '../../redux/Actions'; // Import the necessary actions
 import { fetchWeatherData } from '../../helper/api';
 import WeatherScreenTop from '../../components/WeatherScreenTop';
 import SunriseSunset from '../../components/SunriseSunset';
 import WeeklyWeather from '../../components/WeatherForecast/WeeklyWeather';
 import HourlyForecast from '../../components/WeatherForecast/HourlyForecast';
 import WeatherScreenBottom from '../../components/WeatherScreenBottom';
-import CustomHeader from '../../components/CustomHeader';
+import CustomHeader from '../../components/CustomHeader'; // Import the CustomHeader component
 import images from '../../images';
 import weatherStyles from '../../components/WeatherForecast/weatherStyles';
 import styles from './style';
-import FavoriteCities from '../../components/Favourites';
-import Settings from '../../components/Settings';
+import { useDispatch } from 'react-redux';
+import { fetchHourlyWeatherRequest } from '../../redux/Actions';
+import { fetchHourlyWeatherData } from '../../helper/hourlyApi';
 
-const Weather = ({ route, navigation, addToFavorites }) => {
+
+const Weather = ({ route, navigation, addToFavorites, addCityWeatherToFavorites }) => {
   const { cityName, temperature } = route.params;
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedUnit, setSelectedUnit] = useState(true);
-  
+  const dispatch = useDispatch();
 
   async function getWeatherData() {
     setLoading(true);
@@ -240,51 +443,69 @@ const Weather = ({ route, navigation, addToFavorites }) => {
     getWeatherData();
   }, [cityName]);
 
-  // const handleAddToFavorites = () => {
-  //   // Add the current city to the favorites
-  //   addToFavorites(cityName);
-  // };
+  const handleCitySearch = (cityName) => {
+    // Dispatch the action to fetch hourly weather data for the entered city using the new function
+    dispatch(fetchHourlyWeatherRequest(cityName));
+  
+    // Fetch hourly weather data directly using the new function
+    fetchHourlyWeatherData(cityName)
+      .then((hourlyData) => {
+        // Do something with the fetched hourly data
+        console.log('Hourly Weather Data:', hourlyData);
+      })
+      .catch((error) => {
+        console.error('Error fetching hourly weather data:', error);
+      });
+  };
 
-    const handleAddToFavorites = () => {
-      addToFavorites({ name: cityName, temperature });
+
+  const handleAddToFavorites = () => {
+    console.log('Adding city to favorites'); // Add this line for debugging
+
+    addToFavorites({ name: cityName, temperature });
+console.log('abc', handleAddToFavorites);
+    // Create an object with the city's weather details
+    const cityWeatherData = {
+      city: cityName,
+      temperature,
     };
-    
+
+    // Dispatch the action to add the city's weather to the favorites
+    addCityWeatherToFavorites(cityWeatherData);
+  };
 
   if (loading || weatherData === null) {
     return <ActivityIndicator size="large" />;
   }
 
   return (
-    <ImageBackground
-      source={images.backgroundd}
-      style={{ flex: 1 }}
-    >
+    <ImageBackground source={images.backgroundd} style={{ flex: 1 }}>
       <ScrollView>
         <View style={styles.container}>
           <CustomHeader
             navigation={navigation}
-            onAddToFavorites={handleAddToFavorites} // Pass the handler to the CustomHeader component
+            onAddToFavorites={handleAddToFavorites} 
           />
+        <WeatherScreenTop weatherData={weatherData} selectedUnit={selectedUnit} />
+           <SunriseSunset weatherData={weatherData} />
+         </View>
+         <View style={weatherStyles.container}>
+           <Text style={weatherStyles.title}>Hourly Forecast for {cityName}</Text>
+           {/* <HourlyForecast data={weatherData.list} /> */}
+           <HourlyForecast cityName={cityName} />
 
-          <WeatherScreenTop weatherData={weatherData} selectedUnit={selectedUnit} />
-          <SunriseSunset weatherData={weatherData} />
-        </View>
-        <View style={weatherStyles.container}>
-          <Text style={weatherStyles.title}>Hourly Forecast for {cityName}</Text>
-          <HourlyForecast data={weatherData.list} />
-        </View>
+         </View>
 
-        <View style={styles.weekcontainer}>
-          <Text style={styles.screenTitle}>Weekly Weather for {cityName}</Text>
-          {/* <WeeklyWeather weeklyData={weatherData} /> */}
-          {/* <WeeklyWeather cityName={cityName} /> */}
-        </View>
-        <View>
-          <WeatherScreenBottom weatherData={weatherData} />
-        </View>
-      </ScrollView>
-    </ImageBackground>
-  );
+         <View style={styles.weekcontainer}>
+           <Text style={styles.screenTitle}>Weekly Weather for {cityName}</Text>
+         
+         </View>
+         <View>
+           <WeatherScreenBottom weatherData={weatherData} />
+         </View>
+       </ScrollView>
+     </ImageBackground>
+   );
 };
 
 const mapStateToProps = (state) => ({
@@ -292,13 +513,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  // Add your other mapDispatchToProps here if needed
+  addCityWeatherToFavorites, // Add the new action to mapDispatchToProps
   addToFavorites, // Add addToFavorites to mapDispatchToProps
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Weather);
-
-
-
-
-

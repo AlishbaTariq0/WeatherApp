@@ -174,6 +174,7 @@ searchButton: {
       borderWidth: wp(0.2), 
       borderColor: 'white', 
     },
+  
 
     removeOptionText: {
       color: "white", 
@@ -200,6 +201,14 @@ searchButton: {
       backgroundColor: "transparent", 
       zIndex: wp(1),
       // width: wp(80)
+    },
+
+    swipeoutStyle : {
+      backgroundColor: 'transparent',
+    },
+    
+    swipeoutContainerStyle: {
+      height:wp(50), // Adjust the height as needed
     },
 
 });

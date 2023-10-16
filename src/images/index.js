@@ -15,7 +15,9 @@ const images = {
     background: require('./backg.webp'),
     favorites: require('./favourites2.png'),
     favourites: require('./favourites.png'),
-    backgroundd: require('./bg2.jpg')
+    backgroundd: require('./bg2.jpg'),
+    favIcon: require('./favIcon.png'),
+    favIcon2: require('./favIcon2.png')
 }
 
 export default images;

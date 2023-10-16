@@ -201,7 +201,7 @@ export const AppNavigator = ({ route }) => {
 />
 
 
-      <Stack.Screen name="Settingas" component={Settings} />
+      <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };

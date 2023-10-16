@@ -39,6 +39,12 @@ function WeatherScreenTop({ weatherData, selectedUnit }) {
     minute: '2-digit',
   }).format(currentDateTime);
 
+  const weatherImages = {
+    Clear: images.clear,
+    Clouds: images.clouds, 
+    Rain: images.rain,  
+  };
+
   return (
   //   <ImageBackground
   //   source={images.backgroundd} 
@@ -46,9 +52,14 @@ function WeatherScreenTop({ weatherData, selectedUnit }) {
   // >
     <View style={styles.container}>
 
-      <View style={styles.imageContainer}>
+      {/* <View style={styles.imageContainer}>
         <Image source={images.clear} style={styles.weatherImage} />
-      </View>
+      </View> */}
+      <View style={styles.imageContainer}>
+  <Image source={weatherImages[weatherDescription] || images.default} style={styles.weatherImage} />
+</View>
+
+
       <View style={styles.textContainer}>
         <Text style={styles.cityName}>{weatherData?.city?.name}</Text>
         <Text style={styles.temperature}>
