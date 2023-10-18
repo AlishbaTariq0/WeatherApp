@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     // backgroundColor: 'white',
-    marginTop: wp(1),
+    marginTop: wp(-1),
     width: wp(100),
     // border: wp(2),
     // borderColor: 'black',

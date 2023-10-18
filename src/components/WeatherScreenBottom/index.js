@@ -14,7 +14,7 @@ const WeatherScreenBottom = ({ weatherData }) => {
 
   return (
     <ImageBackground
-      source={images.backgroundd} 
+      source={images.background3} 
       style={{ flex: 1 }} 
     >
     <SafeAreaView style={styles.container}>

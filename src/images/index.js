@@ -16,6 +16,7 @@ const images = {
     favorites: require('./favourites2.png'),
     favourites: require('./favourites.png'),
     backgroundd: require('./bg2.jpg'),
+    background3: require('./bg3.jpg'),
     favIcon: require('./favIcon.png'),
     favIcon2: require('./favIcon2.png')
 }

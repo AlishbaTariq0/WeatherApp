@@ -6,15 +6,23 @@ import {
 
 const Settingsstyles = StyleSheet.create({
     container: {
-        flex: 1,
+      flex: 1,
+      padding: wp(1),
+      marginTop: wp(5), 
+      marginBottom: wp(-16),
+      borderBottomWidth: wp(0.2),
+      borderColor: 'gray',
+      justifyContent: 'space-between',
       },
+
       toggleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: 10,
-        borderBottomWidth: 1,
+        padding: wp(1),
+        borderBottomWidth: wp(0.2),
         borderColor: 'gray',
+        marginBottom: wp(2),
         color: 'white'
       },
 
@@ -39,11 +47,6 @@ settingsIcon: {
     marginTop: 20,
   },
 
-  container: {
-    flex: 1,
-    padding: wp(1),
-    marginTop: wp(3),
-  },
   header: {
     fontSize: wp(8),
     fontWeight: 'bold',
@@ -60,10 +63,9 @@ settingsIcon: {
       color: 'white'
     },
     autoRefreshContainer: {
-        // flexDirection: 'row',
-        // alignItems: 'center',
-        marginBottom: wp(100),
-        color: 'white'
+        marginBottom: wp(121),
+        color: 'white',
+        position:'relative',
     },
 
     autoRefreshLabel: {
@@ -75,7 +77,55 @@ settingsIcon: {
       fontSize: wp(5),
       color: 'black' 
     },
+
+    unitDropdownContainer: {
+      zIndex: wp(10),
+    },
     
+    unitDropdown: {
+      position: 'absolute',
+      zIndex: 10, 
+      marginTop: wp(50),
+    },
     
+    NotificationContainer: {
+      flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: wp(1),
+        borderBottomWidth: wp(0.2),
+        borderColor: 'gray',
+        marginBottom: wp(2),
+        color: 'white',
+        marginTop: wp(5)
+      },
+
+    label: {
+      fontSize: wp(6),
+      color: 'white',
+      // marginTop: wp(15)
+    },
+
+    switch: {
+    },
+
+    lightThemeStyles: {
+      container: {
+        backgroundColor: "white",
+      },
+      header: {
+        color: "black",
+      },
+    },
+
+    darkThemeStyles:{ 
+      container: {
+        backgroundColor: "black",
+      },
+      header: {
+        color: "white",
+      },
+    },
+
 });
 export default Settingsstyles;

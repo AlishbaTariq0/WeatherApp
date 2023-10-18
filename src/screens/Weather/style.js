@@ -73,14 +73,12 @@ const styles = StyleSheet.create({
     fontSize: wp(5.5),
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: wp(10),
-    marginBottom: wp(3),
+    marginTop: wp(8),
     color: 'white'
   },
 
   weekcontainer: {
-      // marginTop: wp(5),
-      // backgroundColor: 'white',
+      // marginTop: wp(2),
       color: 'white'
   },
 

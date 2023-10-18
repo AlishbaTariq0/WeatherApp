@@ -6,13 +6,9 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex: wp(0.9),
-    // backgroundColor:'white', 
     width: wp(100),
-    // marginTop: wp()
-    // border: wp(2),
-    // borderColor: 'black',
-    // // borderRadius: wp(1),
-    // borderWidth: wp(0.5)
+    height: wp(43)
+    
   },
  
   row: {

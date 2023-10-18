@@ -101,7 +101,7 @@ const WeeklyWeather = ({ cityName }) => {
         case 'Clear':
           return 'clear';
         case 'Clouds':
-          return 'cloud';
+          return 'clouds';
         case 'Rain':
           return 'rain';
         default:

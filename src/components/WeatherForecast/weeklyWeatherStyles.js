@@ -8,7 +8,8 @@ const weeklyWeatherStyles  = StyleSheet.create({
     flex: wp(1),
     flexDirection: 'column',
     height: wp(56),
-    marginBottom: wp(3)
+    // marginBottom: wp(3),
+    marginTop: wp(2)
     // justifyContent: 'center',
     // paddingHorizontal: 10,
 
@@ -23,7 +24,7 @@ const weeklyWeatherStyles  = StyleSheet.create({
   },
 
   scrollViewContent: {
-    paddingBottom: wp(3),
+    paddingBottom: wp(0.1),
   },
 
 row: {
@@ -115,7 +116,7 @@ row: {
     
   flatListContainer: {
     flex: wp(0.5), 
-    marginTop: wp(5),
+    marginTop: wp(4),
     color: 'white'
   },
 

@@ -12,7 +12,7 @@ const weatherStyles = StyleSheet.create({
     title: {
       fontSize: wp(5.5),
       fontWeight: 'bold',
-      marginTop: wp(10),
+      marginTop: wp(9),
       marginBottom: wp(5),
       color: 'white'
 
@@ -27,7 +27,7 @@ const weatherStyles = StyleSheet.create({
         borderWidth: wp(0.3),
         height: wp(40),
         backgroundColor: 'lightblue',
-        borderBlockColor: 'purple',
+        borderBlockColor: 'black',
         alignItems: 'center',
       },
 
