@@ -1,5 +1,6 @@
-// temperatureUnitReducer.js
+// reducers/temperatureUnitReducer.js
 import { SET_TEMPERATURE_UNIT } from "../Actions/actionType";
+
 const initialState = {
   unit: '°C', // Default to Celsius
 };
@@ -9,7 +10,7 @@ const temperatureUnitReducer = (state = initialState, action) => {
     case SET_TEMPERATURE_UNIT:
       return {
         ...state,
-        unit: action.payload,
+        unit: action.unit,
       };
     default:
       return state;

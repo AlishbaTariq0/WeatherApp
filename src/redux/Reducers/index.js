@@ -10,7 +10,6 @@ const rootReducer = combineReducers({
   favoriteCities: favoriteCitiesReducer,
   weather: weatherReducer,  
   temperatureUnit: temperatureUnitReducer,
-
 });
 
 

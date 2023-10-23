@@ -3,32 +3,12 @@
 import { TOGGLE_SEARCH_BAR, REMOVE_FAVORITE_CITY, ADD_FAVORITE_CITY, ADD_CITY_WEATHER_TO_FAVORITES, FETCH_HOURLY_WEATHER_REQUEST, FETCH_HOURLY_WEATHER_SUCCESS, FETCH_HOURLY_WEATHER_FAILURE, SET_TEMPERATURE_UNIT } from './actionType';
 import { FETCH_WEATHER_REQUEST , FETCH_WEATHER_SUCCESS , FETCH_WEATHER_FAILURE} from './actionType';
 import { ADD_TO_FAVORITES } from './actionType';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export const toggleSearchBar = () => ({
   type: TOGGLE_SEARCH_BAR,
 });
-
-// export const fetchWeatherRequest = (cityName) => ({
-//   type: FETCH_WEATHER_REQUEST,
-//   payload: { cityName },
-// });
-
-// export const fetchWeatherSuccess = (weeklyData) => ({
-//   type: FETCH_WEATHER_SUCCESS,
-//   weeklyData,
-// });
-
-// export const fetchWeatherFailure = (error) => ({
-//   type: FETCH_WEATHER_FAILURE,
-//   error,
-// });
-
-// redux/Actions.js
-
-// export const fetchWeatherRequest = (cityName) => ({
-//   type: FETCH_WEATHER_REQUEST,
-//   payload: { cityName },
-// });
 
 export const fetchWeatherRequest = (city) => ({
   type: FETCH_WEATHER_REQUEST,
@@ -95,8 +75,24 @@ export const fetchHourlyWeatherFailure = (error) => ({
 });
 
 export const setTemperatureUnit = (unit) => ({
-    type: SET_TEMPERATURE_UNIT,
-    payload: unit,
-  });
+  type: SET_TEMPERATURE_UNIT,
+  unit,
+});
 
 
+// export const setTemperatureUnit = (unit) => {
+//   return async (dispatch) => {
+//     try {
+//       // Save the selected unit in local storage
+//       await AsyncStorage.setItem('temperatureUnit', unit);
+
+//       // Dispatch the action to update Redux state
+//       dispatch({
+//         type: SET_TEMPERATURE_UNIT,
+//         unit,
+//       });
+//     } catch (error) {
+//       console.error('Error saving temperature unit to local storage:', error);
+//     }
+//   };
+// };

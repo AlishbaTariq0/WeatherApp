@@ -399,17 +399,21 @@
 // export default connect(mapStateToProps, mapDispatchToProps)(Weather);
 
 
+
+// CORRECT
+
+
 import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, ScrollView, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
-import { addToFavorites, addCityWeatherToFavorites } from '../../redux/Actions'; // Import the necessary actions
+import { addToFavorites, addCityWeatherToFavorites } from '../../redux/Actions';
 import { fetchWeatherData } from '../../helper/api';
 import WeatherScreenTop from '../../components/WeatherScreenTop';
 import SunriseSunset from '../../components/SunriseSunset';
 import WeeklyWeather from '../../components/WeatherForecast/WeeklyWeather';
 import HourlyForecast from '../../components/WeatherForecast/HourlyForecast';
 import WeatherScreenBottom from '../../components/WeatherScreenBottom';
-import CustomHeader from '../../components/CustomHeader'; // Import the CustomHeader component
+import CustomHeader from '../../components/CustomHeader';
 import images from '../../images';
 import weatherStyles from '../../components/WeatherForecast/weatherStyles';
 import styles from './style';
@@ -418,18 +422,14 @@ import { fetchHourlyWeatherRequest } from '../../redux/Actions';
 import { fetchHourlyWeatherData } from '../../helper/hourlyApi';
 import { useSelector } from 'react-redux';
 
-
 const Weather = ({ route, navigation, addToFavorites, addCityWeatherToFavorites }) => {
-  const { cityName, temperature } = route.params;
+  const { cityName, temperature, addFavoriteCity } = route.params; // Get the addFavoriteCity callback
+
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [selectedUnit, setSelectedUnit] = useState(true);
   const dispatch = useDispatch();
- // Get the selected temperature unit from Redux store
- const selectedUnit = useSelector((state) => state.temperatureUnit?.unit);
-
-// Display the temperature unit based on the selected unit
-const temperatureUnit = selectedUnit || '°C'; // Default to Celsius if not selected
+  const selectedUnit = useSelector((state) => state.temperatureUnit?.unit);
+  const temperatureUnit = selectedUnit || '°C';
 
   async function getWeatherData() {
     setLoading(true);
@@ -449,108 +449,70 @@ const temperatureUnit = selectedUnit || '°C'; // Default to Celsius if not sele
     getWeatherData();
   }, [cityName]);
 
-  const handleCitySearch = (cityName) => {
-    // Dispatch the action to fetch hourly weather data for the entered city using the new function
-    dispatch(fetchHourlyWeatherRequest(cityName));
-  
-    // Fetch hourly weather data directly using the new function
-    fetchHourlyWeatherData(cityName)
-      .then((hourlyData) => {
-        // Do something with the fetched hourly data
-        console.log('Hourly Weather Data:', hourlyData);
-      })
-      .catch((error) => {
-        console.error('Error fetching hourly weather data:', error);
-      });
-  };
-
-
+  // Function to add the city to favorites
   const handleAddToFavorites = () => {
-    console.log('Adding city to favorites'); // Add this line for debugging
-
-    addToFavorites({ name: cityName, temperature });
-console.log('abc', handleAddToFavorites);
-    // Create an object with the city's weather details
-    const cityWeatherData = {
-      city: cityName,
-      temperature,
-    };
-
-    // Dispatch the action to add the city's weather to the favorites
-    addCityWeatherToFavorites(cityWeatherData);
+    addFavoriteCity(cityName); // Call the callback to add the city to favorites
+    navigation.navigate('SearchBar'); // Navigate back to the SearchBar screen
   };
 
   if (loading || weatherData === null) {
     return <ActivityIndicator size="large" />;
   }
 
-    // Function to convert temperature based on the selected unit
-    const convertTemperature = (temp) => {
-      if (selectedUnit === '°F') {
-        // Convert from Celsius to Fahrenheit
-        return (temp * 9) / 5 + 32;
-      }
-      // Leave the temperature as Celsius (default)
-      return temp;
-    };
-  
-    // Use the `convertTemperature` function to display the temperature
-    const convertedTemperature = convertTemperature(temperature);
-  
+  const convertTemperature = (temp) => {
+    if (selectedUnit === '°F') {
+      return (temp * 9) / 5 + 32;
+    }
+    return temp;
+  };
+
+  const convertedTemperature = convertTemperature(temperature);
 
   return (
     <ImageBackground source={images.backgroundd} style={{ flex: 1 }}>
       <ScrollView>
         <View style={styles.container}>
-          <CustomHeader
-            navigation={navigation}
-            onAddToFavorites={handleAddToFavorites} 
+          <CustomHeader navigation={navigation} onAddToFavorites={handleAddToFavorites} />
+          <WeatherScreenTop
+            weatherData={weatherData}
+            selectedUnit={selectedUnit}
+            temperature={convertedTemperature}
           />
-        {/* <WeatherScreenTop weatherData={weatherData} selectedUnit={selectedUnit} /> */}
-        <WeatherScreenTop
-  weatherData={weatherData}
-  selectedUnit={selectedUnit}
-  temperature={convertedTemperature} // Pass the converted temperature
-/>
-
-           <SunriseSunset weatherData={weatherData} />
-         </View>
-         <View style={weatherStyles.container}>
-           <Text style={weatherStyles.title}>Hourly Forecast for {cityName}</Text>
-           {/* <HourlyForecast cityName={cityName} /> */}
-           <HourlyForecast
+          <SunriseSunset weatherData={weatherData} />
+        </View>
+        <View style={weatherStyles.container}>
+          <Text style={weatherStyles.title}>Hourly Forecast for {cityName}</Text>
+          <HourlyForecast
             cityName={cityName}
             temperatureUnit={temperatureUnit}
             convertTemperature={convertTemperature}
           />
-         </View>
-
-         <View style={styles.weekcontainer}>
-           <Text style={styles.screenTitle}>Weekly Forecast for {cityName}</Text>
-           {/* <WeeklyWeather cityName={cityName} /> */}
-           {/* <WeeklyWeather cityName={cityName} selectedUnit={selectedUnit} /> */}
-           <WeeklyWeather cityName={cityName} temperatureUnit={temperatureUnit} convertTemperature={convertTemperature} />
-
-
-         </View>
-         <View>
-           <WeatherScreenBottom weatherData={weatherData} />
-         </View>
-       </ScrollView>
-     </ImageBackground>
-   );
+        </View>
+        <View style={styles.weekcontainer}>
+          <Text style={styles.screenTitle}>Weekly Forecast for {cityName}</Text>
+          <WeeklyWeather
+            cityName={cityName}
+            temperatureUnit={temperatureUnit}
+            convertTemperature={convertTemperature}
+          />
+        </View>
+        <View>
+          <WeatherScreenBottom weatherData={weatherData} />
+        </View>
+      </ScrollView>
+    </ImageBackground>
+  );
 };
 
 const mapStateToProps = (state) => {
   return {
-    temperatureUnit: state.temperatureUnit?.unit || '°C', // Provide a default value
+    temperatureUnit: state.temperatureUnit?.unit || '°C',
   };
 };
 
 const mapDispatchToProps = {
-  addCityWeatherToFavorites, // Add the new action to mapDispatchToProps
-  addToFavorites, // Add addToFavorites to mapDispatchToProps
+  addCityWeatherToFavorites,
+  addToFavorites,
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Weather);

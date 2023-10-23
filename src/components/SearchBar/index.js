@@ -531,7 +531,286 @@
 
 // correct
 
-import React, { useState, useEffect , useRef} from "react";
+// import React, { useState, useEffect , useRef} from "react";
+// import {
+//   View,
+//   TextInput,
+//   useWindowDimensions,
+//   TouchableOpacity,
+//   ImageBackground,
+//   Text,
+//   Modal,
+//   FlatList,
+//   ScrollView,
+//   Image,
+// } from "react-native";
+// import { Feather } from "@expo/vector-icons";
+// import images from "../../images";
+// import styles from "./style";
+// import { connect } from "react-redux";
+// import {
+//   toggleSearchBar,
+//   addFavoriteCity,
+// } from "../../redux/Actions/actionType";
+// import { fetchWeatherData } from "../../helper/api";
+// import { useDispatch } from "react-redux";
+// import Swipeout from "react-native-swipeout";
+// import { removeFavoriteCity } from "../../redux/Actions";
+
+// const SearchBar = (props) => {
+//   const [name, setName] = useState("");
+//   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+//   const [weatherInfo, setWeatherInfo] = useState("");
+//   const dispatch = useDispatch();
+//   const [favoriteCities, setFavoriteCities] = useState([]);
+//   const [favoriteCitiesWeather, setFavoriteCitiesWeather] = useState([]);
+//   const textInputRef = useRef();
+
+//   const cityNameHandler = (cityName) => {
+//     setName(cityName);
+//   };
+
+
+//   //  no auto add
+//   const nameEnterHandler = async () => {
+//     if (name) {
+//       try {
+//         const data = await fetchWeatherData(name);
+//         console.log("Weather Data:", data);
+  
+//         const description = data?.list[0]?.weather[0]?.main;
+//         const temperatureInCelsius = data?.list[0]?.main?.temp
+//           ? (data?.list[0]?.main.temp - 273.15).toFixed(0)
+//           : "N/A";
+  
+//         const feelsLikeInCelsius = data?.list[0]?.main?.feels_like
+//           ? (data?.list[0]?.main.feels_like - 273.15).toFixed(0)
+//           : "N/A";
+  
+//         setWeatherInfo(
+//           `${name}: ${temperatureInCelsius}°C, ${description},  Feels Like: ${feelsLikeInCelsius}°C`
+//         );
+  
+//         // Update favoriteCities list
+//         setFavoriteCities((prevCities) => [...prevCities, name]);
+  
+//         // Navigate to the Weather screen
+//         props.navigation.navigate("Weather", { cityName: name });
+//       } catch (error) {
+//         console.error("Navigation error:", error);
+//       }
+//     } else {
+//       // Handle the case when 'name' is empty
+//     }
+//   };
+  
+
+//   // const addToFavorites = () => {
+//   //   props.addFavoriteCity(name);
+//   // };
+
+//   const addToFavorites = (cityName) => {
+//     // Add the city to the favorite list
+//     setFavoriteCities((prevCities) => [...prevCities, cityName]);
+//   };
+
+
+//   // Add the onClick handler for removing the city
+//   const removeFavoriteCityHandler = (cityName) => {
+//     console.log(`Removing city: ${cityName}`);
+//     // Filter out the city to be removed
+//     setFavoriteCitiesWeather((prevWeather) =>
+//       prevWeather.filter((cityWeather) => cityWeather.city !== cityName)
+//     );
+//     // Call the action to remove it from Redux state if needed
+//     props.removeFavoriteCity(cityName);
+//   };
+
+//   const windowWidth = useWindowDimensions().width;
+
+//   // const favoriteCities = ["Lahore", "Karachi", "Islamabad"];
+
+//   return (
+//     <ImageBackground source={images.backgroundd} style={{ flex: 1 }}>
+//         <TouchableOpacity onPress={() => textInputRef.current.focus()}>
+//       <View
+//         style={{
+//           flexDirection: "row",
+//           justifyContent: "space-between",
+//           alignItems: "center",
+//         }}
+//         onPress={() => textInputRef.current.focus()} 
+//       >
+//         <Text
+//           style={{ color: "white", fontSize: 40, marginTop: 20, marginLeft: 5 }}
+//         >
+//           Weather
+//         </Text>
+//         <TouchableOpacity
+//           onPress={() => setIsDropdownVisible(true)}
+//           style={{
+//             padding: 10,
+//             marginRight: 10,
+//           }}
+//         >
+//           <Feather
+//             name="more-horizontal"
+//             size={30}
+//             color="white"
+//             marginTop={20}
+//           />
+//         </TouchableOpacity>
+//       </View>
+//       <View style={[styles.searchBar, { width: windowWidth }]}>
+
+//         <TextInput
+//           ref={textInputRef}
+//           style={styles.searchInput}
+//           placeholder="Enter Your City"
+//           onChangeText={cityNameHandler}
+//         />
+//         <TouchableOpacity
+//           style={styles.searchButton}
+//           onPress={nameEnterHandler}
+//         >
+//           <Feather name="search" size={26} color="gold" />
+//         </TouchableOpacity>
+//    </View>
+  
+
+//     {/* Modal for the dropdown menu  */}
+// <Modal
+//   visible={isDropdownVisible}
+//   transparent={true}
+//   animationType="slide"
+// >
+//   <View style={styles.modalContainer}>
+//     <View style={styles.dropdownContainer}>
+//       <Text style={styles.dropdownTitle}>Favourites</Text>
+//       <FlatList
+//         data={favoriteCities}
+//         keyExtractor={(item) => item}
+//         renderItem={({ item }) => (
+//           <Text style={styles.favoriteCityText}>{item}</Text>
+//         )}
+//       />
+//       <TouchableOpacity onPress={() => setIsDropdownVisible(false)}>
+//         <Text style={styles.closeButtonText}>Close</Text>
+//       </TouchableOpacity>
+//     </View>
+//   </View>
+// </Modal>
+
+//       <ScrollView>
+//         {favoriteCitiesWeather.map((cityWeather, index) => (
+//           <View style={styles.swipeoutContainerStyle}>
+//           <Swipeout
+//             style={[styles.swipeout, styles.swipeoutStyle]}
+//             key={index}
+//             onClose={() => setIsDropdownVisible(false)} // Close dropdown when swipeout item is closed
+//             right={[
+//               {
+//                 text: (
+//                   <View style={styles.removeButtonContainer}>
+//                     <Text
+//                       style={[styles.removeOptionText, styles.removeButton]}
+//                       onPress={() =>
+//                         removeFavoriteCityHandler(cityWeather.city)
+//                       }
+//                     >
+//                       Remove
+//                     </Text>
+//                   </View>
+//                 ),
+//               },
+//             ]}
+//           >
+//             <View style={styles.favoriteCityBox}>
+//               <Text style={styles.cityNameText}>{cityWeather.city}</Text>
+//               <Text style={styles.temperatureText}>
+//                 {`${cityWeather.temperature}°C, ${cityWeather.description}`}
+//               </Text>
+//               {cityWeather.feelsLike && (
+//                 <Text style={styles.feelsLikeText}>
+//                   Feels Like: {`${cityWeather.feelsLike}°C`}
+//                 </Text>
+//               )}
+//               <Image
+//                 source={images[cityWeather.description.toLowerCase()]}
+//                 style={{
+//                   width: 70,
+//                   height: 70,
+//                   marginLeft: 275,
+//                   marginVertical: -85,
+//                 }}
+//               />
+//             </View>
+//           </Swipeout>
+//           </View>
+//         ))}
+//       </ScrollView>
+//       </TouchableOpacity>
+//     </ImageBackground>
+   
+//   );
+// };
+
+// const mapStateToProps = (state) => ({
+//   isSearchBarVisible: state.isSearchBarVisible,
+//   favoriteCities: state.favoriteCities.favoriteCities,
+// });
+
+// const mapDispatchToProps = {
+//   toggleSearchBar,
+//   addFavoriteCity,
+//   removeFavoriteCity,
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+
+
+
+
+
+
+// // Function to add a city to the favorite list and fetch its weather
+// const addToFavorites = async (cityName) => {
+//   // Fetch weather data for the city
+//   try {
+//     const data = await fetchWeatherData(cityName);
+//     console.log("Weather Data:", data);
+
+//     // Extract relevant weather information
+//     const description = data?.list[0]?.weather[0]?.main;
+//     const temperatureInCelsius = data?.list[0]?.main?.temp
+//       ? (data?.list[0]?.main.temp - 273.15).toFixed(0)
+//       : "N/A";
+//     const feelsLikeInCelsius = data?.list[0]?.main?.feels_like
+//       ? (data?.list[0]?.main.feels_like - 273.15).toFixed(0)
+//       : "N/A";
+
+//     // Update the favorite cities' weather data array
+//     setFavoriteCitiesWeather((prevWeather) => [
+//       ...prevWeather,
+//       {
+//         city: cityName,
+//         temperature: `${temperatureInCelsius}°C`,
+//         description,
+//         feelsLike: `${feelsLikeInCelsius}°C`,
+//       },
+//     ]);
+
+//     // Navigate to the Weather screen
+//     props.navigation.navigate("Weather", { cityName });
+//   } catch (error) {
+//     console.error("Navigation error:", error);
+//   }
+// };
+
+
+
+
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   TextInput,
@@ -548,14 +827,10 @@ import { Feather } from "@expo/vector-icons";
 import images from "../../images";
 import styles from "./style";
 import { connect } from "react-redux";
-import {
-  toggleSearchBar,
-  addFavoriteCity,
-} from "../../redux/Actions/actionType";
 import { fetchWeatherData } from "../../helper/api";
 import { useDispatch } from "react-redux";
 import Swipeout from "react-native-swipeout";
-import { removeFavoriteCity } from "../../redux/Actions";
+import { removeFavoriteCity, addFavoriteCity } from "../../redux/Actions"; // Import the addFavoriteCity action
 
 const SearchBar = (props) => {
   const [name, setName] = useState("");
@@ -570,188 +845,195 @@ const SearchBar = (props) => {
     setName(cityName);
   };
 
-
-  //  no auto add
   const nameEnterHandler = async () => {
     if (name) {
       try {
         const data = await fetchWeatherData(name);
-        console.log("Weather Data:", data);
   
         const description = data?.list[0]?.weather[0]?.main;
         const temperatureInCelsius = data?.list[0]?.main?.temp
           ? (data?.list[0]?.main.temp - 273.15).toFixed(0)
           : "N/A";
-  
         const feelsLikeInCelsius = data?.list[0]?.main?.feels_like
           ? (data?.list[0]?.main.feels_like - 273.15).toFixed(0)
           : "N/A";
   
         setWeatherInfo(
-          `${name}: ${temperatureInCelsius}°C, ${description},  Feels Like: ${feelsLikeInCelsius}°C`
+          `${name}: ${temperatureInCelsius}°C, ${description}, Feels Like: ${feelsLikeInCelsius}°C`
         );
   
-        // Update favoriteCities list
-        setFavoriteCities((prevCities) => [...prevCities, name]);
+        // Add the city to favorites using the addFavoriteCity callback
+        addFavoriteCity(name);
   
         // Navigate to the Weather screen
-        props.navigation.navigate("Weather", { cityName: name });
+        props.navigation.navigate("Weather", {
+          cityName: name,
+          temperature: temperatureInCelsius,
+          addFavoriteCity: addToFavorites,
+
+        });
       } catch (error) {
         console.error("Navigation error:", error);
       }
-    } else {
-      // Handle the case when 'name' is empty
     }
   };
   
+  const addToFavorites = async (cityName) => {
+    try {
+      const data = await fetchWeatherData(cityName);
 
-  // const addToFavorites = () => {
-  //   props.addFavoriteCity(name);
-  // };
+      const description = data?.list[0]?.weather[0]?.main;
+      const temperatureInCelsius = data?.list[0]?.main?.temp
+        ? (data?.list[0]?.main.temp - 273.15).toFixed(0)
+        : "N/A";
+      const feelsLikeInCelsius = data?.list[0]?.main?.feels_like
+        ? (data?.list[0]?.main.feels_like - 273.15).toFixed(0)
+        : "N/A";
 
-  const addToFavorites = (cityName) => {
-    // Add the city to the favorite list
-    setFavoriteCities((prevCities) => [...prevCities, cityName]);
+      setFavoriteCitiesWeather((prevWeather) => [
+        ...prevWeather,
+        {
+          city: cityName,
+          temperature: `${temperatureInCelsius}°C`,
+          description,
+          feelsLike: `${feelsLikeInCelsius}°C`,
+        },
+      ]);
+
+      setFavoriteCities((prevCities) => [...prevCities, cityName]);
+
+      // Add the city to favorites using Redux action
+      props.addFavoriteCity(cityName);
+    } catch (error) {
+      console.error("Error adding to favorites:", error);
+    }
   };
 
-
-  // Add the onClick handler for removing the city
   const removeFavoriteCityHandler = (cityName) => {
-    console.log(`Removing city: ${cityName}`);
-    // Filter out the city to be removed
     setFavoriteCitiesWeather((prevWeather) =>
       prevWeather.filter((cityWeather) => cityWeather.city !== cityName)
     );
-    // Call the action to remove it from Redux state if needed
     props.removeFavoriteCity(cityName);
   };
 
   const windowWidth = useWindowDimensions().width;
 
-  // const favoriteCities = ["Lahore", "Karachi", "Islamabad"];
-
   return (
     <ImageBackground source={images.backgroundd} style={{ flex: 1 }}>
+      <View>
         <TouchableOpacity onPress={() => textInputRef.current.focus()}>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-        onPress={() => textInputRef.current.focus()} 
-      >
-        <Text
-          style={{ color: "white", fontSize: 40, marginTop: 20, marginLeft: 5 }}
-        >
-          Weather
-        </Text>
-        <TouchableOpacity
-          onPress={() => setIsDropdownVisible(true)}
-          style={{
-            padding: 10,
-            marginRight: 10,
-          }}
-        >
-          <Feather
-            name="more-horizontal"
-            size={30}
-            color="white"
-            marginTop={20}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={[styles.searchBar, { width: windowWidth }]}>
-
-        <TextInput
-          ref={textInputRef}
-          style={styles.searchInput}
-          placeholder="Enter Your City"
-          onChangeText={cityNameHandler}
-        />
-        <TouchableOpacity
-          style={styles.searchButton}
-          onPress={nameEnterHandler}
-        >
-          <Feather name="search" size={26} color="gold" />
-        </TouchableOpacity>
-   </View>
-  
-
-    {/* Modal for the dropdown menu  */}
-<Modal
-  visible={isDropdownVisible}
-  transparent={true}
-  animationType="slide"
->
-  <View style={styles.modalContainer}>
-    <View style={styles.dropdownContainer}>
-      <Text style={styles.dropdownTitle}>Favourites</Text>
-      <FlatList
-        data={favoriteCities}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => (
-          <Text style={styles.favoriteCityText}>{item}</Text>
-        )}
-      />
-      <TouchableOpacity onPress={() => setIsDropdownVisible(false)}>
-        <Text style={styles.closeButtonText}>Close</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</Modal>
-
-      <ScrollView>
-        {favoriteCitiesWeather.map((cityWeather, index) => (
-          <View style={styles.swipeoutContainerStyle}>
-          <Swipeout
-            style={[styles.swipeout, styles.swipeoutStyle]}
-            key={index}
-            onClose={() => setIsDropdownVisible(false)} // Close dropdown when swipeout item is closed
-            right={[
-              {
-                text: (
-                  <View style={styles.removeButtonContainer}>
-                    <Text
-                      style={[styles.removeOptionText, styles.removeButton]}
-                      onPress={() =>
-                        removeFavoriteCityHandler(cityWeather.city)
-                      }
-                    >
-                      Remove
-                    </Text>
-                  </View>
-                ),
-              },
-            ]}
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
           >
-            <View style={styles.favoriteCityBox}>
-              <Text style={styles.cityNameText}>{cityWeather.city}</Text>
-              <Text style={styles.temperatureText}>
-                {`${cityWeather.temperature}°C, ${cityWeather.description}`}
-              </Text>
-              {cityWeather.feelsLike && (
-                <Text style={styles.feelsLikeText}>
-                  Feels Like: {`${cityWeather.feelsLike}°C`}
-                </Text>
-              )}
-              <Image
-                source={images[cityWeather.description.toLowerCase()]}
-                style={{
-                  width: 70,
-                  height: 70,
-                  marginLeft: 275,
-                  marginVertical: -85,
-                }}
+            <Text
+              style={{ color: "white", fontSize: 40, marginTop: 20, marginLeft: 5 }}
+            >
+              Weather
+            </Text>
+            <TouchableOpacity
+              onPress={() => setIsDropdownVisible(true)}
+              style={{
+                padding: 10,
+                marginRight: 10,
+              }}
+            >
+              <Feather
+                name="more-horizontal"
+                size={30}
+                color="white"
+                marginTop={20}
               />
-            </View>
-          </Swipeout>
+            </TouchableOpacity>
           </View>
-        ))}
-      </ScrollView>
-      </TouchableOpacity>
+        </TouchableOpacity>
+        <View style={[styles.searchBar, { width: windowWidth }]}>
+          <TextInput
+            ref={textInputRef}
+            style={styles.searchInput}
+            placeholder="Enter Your City"
+            onChangeText={cityNameHandler}
+          />
+          <TouchableOpacity
+            style={styles.searchButton}
+            onPress={nameEnterHandler}
+          >
+            <Feather name="search" size={26} color="gold" />
+          </TouchableOpacity>
+        </View>
+
+        <Modal
+          visible={isDropdownVisible}
+          transparent={true}
+          animationType="slide"
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.dropdownContainer}>
+              <Text style={styles.dropdownTitle}>Favourites</Text>
+              <FlatList
+                data={favoriteCities}
+                keyExtractor={(item) => item}
+                renderItem={({ item }) => (
+                  <Text style={styles.favoriteCityText}>{item}</Text>
+                )}
+              />
+              <TouchableOpacity onPress={() => setIsDropdownVisible(false)}>
+                <Text style={styles.closeButtonText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        <ScrollView>
+          {favoriteCitiesWeather.map((cityWeather, index) => (
+            <View key={index} style={styles.swipeoutContainerStyle}>
+              <Swipeout
+                style={[styles.swipeout, styles.swipeoutStyle]}
+                onClose={() => setIsDropdownVisible(false)}
+                right={[
+                  {
+                    text: (
+                      <View style={styles.removeButtonContainer}>
+                        <Text
+                          style={[styles.removeOptionText, styles.removeButton]}
+                          onPress={() => removeFavoriteCityHandler(cityWeather.city)}
+                        >
+                          Remove
+                        </Text>
+                      </View>
+                    ),
+                  },
+                ]}
+              >
+                <View style={styles.favoriteCityBox}>
+                  <Text style={styles.cityNameText}>{cityWeather.city}</Text>
+                  <Text style={styles.temperatureText}>
+                    {`${cityWeather.temperature}, ${cityWeather.description}`}
+                  </Text>
+                  {cityWeather.feelsLike && (
+                    <Text style={styles.feelsLikeText}>
+                      Feels Like: {cityWeather.feelsLike}
+                    </Text>
+                  )}
+                  <Image
+                    source={images[cityWeather.description.toLowerCase()]}
+                    style={{
+                      width: 70,
+                      height: 70,
+                      marginLeft: 275,
+                      marginVertical: -85,
+                    }}
+                  />
+                </View>
+              </Swipeout>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </ImageBackground>
-   
   );
 };
 
@@ -761,10 +1043,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  toggleSearchBar,
-  addFavoriteCity,
   removeFavoriteCity,
+  addFavoriteCity, // Add the addFavoriteCity action to mapDispatchToProps
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
-
