@@ -258,6 +258,9 @@
 
 // export default Settings;
 
+
+
+
 import React, { useState, useEffect } from "react";
 import { View, Text, Switch, StyleSheet, ImageBackground } from "react-native";
 import Dropdown from "../Dropdown";
@@ -267,6 +270,7 @@ import images from "../../images";
 import { useDispatch, useSelector } from 'react-redux';
 import { setTemperatureUnit } from "../../redux/Actions";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { connect } from 'react-redux';
 
 const Settings = () => {
   const [autoRefreshTime, setAutoRefreshTime] = useState("never");
@@ -278,24 +282,29 @@ const Settings = () => {
 
   const [isCelsius, setIsCelsius] = useState(selectedUnit === '°C');
 
-  const toggleTemperatureUnit = (unit) => {
-    setIsCelsius(unit === '°C');
-    dispatch(setTemperatureUnit(unit));
-    console.log('Action dispatched with unit:', unit);
-    console.log('selecteddd unit', unit); // Move the log here to reflect the updated value
-  };
-
-  // const toggleTemperatureUnit = async (unit) => {
-  //   try {
-  //     // Update the AsyncStorage value with the selected unit
-  //     await AsyncStorage.setItem('temperatureUnit', unit);
-  //     dispatch(setTemperatureUnit(unit)); // Dispatch the action with the selected unit
-  //   } catch (error) {
+  // const toggleTemperatureUnit = (unit) => {
+  //   // Dispatch the action to update the temperature unit in Redux store
+  //   dispatch(setTemperatureUnit(unit));
+  //   AsyncStorage.setItem('temperatureUnit', unit).catch((error) => {
   //     console.error('Error storing temperature unit in local storage:', error);
-  //   }
+  //   });
   // };
-
   
+// const toggleTemperatureUnit = (unit) => {
+//   console.log('Selected unit:', unit); // Add this line
+//   dispatch(setTemperatureUnit(unit));
+//   AsyncStorage.setItem('temperatureUnit', unit).catch((error) => {
+//     console.error('Error storing temperature unit in local storage:', error);
+//   });
+// };
+
+const toggleTemperatureUnit = (temperatureUnit) => {
+      setIsCelsius(temperatureUnit === '°C');
+      dispatch(setTemperatureUnit(temperatureUnit));
+      console.log('Action dispatched with unit:', temperatureUnit);
+    };
+  
+
   useEffect(() => {
     const fetchTemperatureUnit = async () => {
       try {
@@ -387,6 +396,12 @@ const Settings = () => {
     </ImageBackground>
   );
 };
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     setTemperatureUnit: (unit) => dispatch(setTemperatureUnit(unit))
+//   };
+// };
+
+// export default connect(null, mapDispatchToProps)(Settings);
 
 export default Settings;
-

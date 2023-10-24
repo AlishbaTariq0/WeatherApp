@@ -3,7 +3,6 @@
 import { TOGGLE_SEARCH_BAR, REMOVE_FAVORITE_CITY, ADD_FAVORITE_CITY, ADD_CITY_WEATHER_TO_FAVORITES, FETCH_HOURLY_WEATHER_REQUEST, FETCH_HOURLY_WEATHER_SUCCESS, FETCH_HOURLY_WEATHER_FAILURE, SET_TEMPERATURE_UNIT } from './actionType';
 import { FETCH_WEATHER_REQUEST , FETCH_WEATHER_SUCCESS , FETCH_WEATHER_FAILURE} from './actionType';
 import { ADD_TO_FAVORITES } from './actionType';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export const toggleSearchBar = () => ({
@@ -74,25 +73,15 @@ export const fetchHourlyWeatherFailure = (error) => ({
   payload: { error },
 });
 
+
 export const setTemperatureUnit = (unit) => ({
   type: SET_TEMPERATURE_UNIT,
   unit,
 });
 
 
-// export const setTemperatureUnit = (unit) => {
-//   return async (dispatch) => {
-//     try {
-//       // Save the selected unit in local storage
-//       await AsyncStorage.setItem('temperatureUnit', unit);
-
-//       // Dispatch the action to update Redux state
-//       dispatch({
-//         type: SET_TEMPERATURE_UNIT,
-//         unit,
-//       });
-//     } catch (error) {
-//       console.error('Error saving temperature unit to local storage:', error);
-//     }
-//   };
-// };
+// // actions.js
+// export const setTemperatureUnit = (unit) => ({
+//   type: SET_TEMPERATURE_UNIT,
+//   payload: unit,
+// });

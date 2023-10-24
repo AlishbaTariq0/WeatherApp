@@ -146,6 +146,16 @@ searchButton: {
       fontSize: wp(10),
     },
 
+    toggleUnitButton: {
+      backgroundColor: 'blue', // Change the background color as needed
+      padding: 10,
+      borderRadius: 5,
+      alignItems: 'center',
+    },
+    toggleUnitButtonText: {
+      color: 'white', // Change the text color as needed
+    },
+
     favoriteCitiesWeatherContainer: {
       marginTop: wp(8),
       padding: wp(10),

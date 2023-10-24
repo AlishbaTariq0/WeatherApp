@@ -156,9 +156,6 @@
 // export default WeatherScreenTop;
 
 
-
-
-
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -175,36 +172,48 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 import { setTemperatureUnit } from "../../redux/Actions";
 
-function WeatherScreenTop({ weatherData }) {
+const WeatherScreenTop = ({ weatherData }) => {
   const navigation = useNavigation();
+  // const selectedUnit = useSelector((state) => state.temperatureUnit);
   const selectedUnit = useSelector((state) => state.temperatureUnit?.unit);
   const [currentTemperature, setCurrentTemperature] = useState("N/A");
   const dispatch = useDispatch();
 
    // Function to convert temperature based on the selected unit
-const convertTemperature = (temp, unit) => {
-  if (unit === '°F') {
-    // Convert from Celsius to Fahrenheit
-    return `${(temp * 9) / 5 + 32}°F`;
-  }
-  // Leave the temperature as Celsius (default)
-  return `${temp}°C`;
-};
+   const convertTemperature = (temp, unit) => {
+    if (unit === '°F') {
+      // Convert from Celsius to Fahrenheit
+      return `${(temp * 9) / 5 + 32}°F`;
+    }
+    // Leave the temperature as Celsius (default)
+    return `${temp}°C`;
+  };
 
+  // // Update the temperature whenever the selected unit or weather data changes
+  // useEffect(() => {
+  //   if (weatherData) {
+  //     const temperatureInCelsius = (weatherData?.list[0]?.main.temp - 273.15).toFixed(0);
+  //     const formattedTemperature = convertTemperature(temperatureInCelsius, selectedUnit);
+  //     setCurrentTemperature(formattedTemperature);
+  //   }
+  // }, [selectedUnit, weatherData]);
 
- // Update the temperature whenever the selected unit or weather data changes
- useEffect(() => {
-  if (weatherData) {
-    const temperatureInCelsius = (weatherData?.list[0]?.main.temp - 273.15).toFixed(0);
-    const formattedTemperature = convertTemperature(temperatureInCelsius, selectedUnit);
-    setCurrentTemperature(formattedTemperature);
-  }
-}, [selectedUnit, weatherData]);
+  useEffect(() => {
+    if (weatherData) {
+      const temperatureInCelsius = (weatherData?.list[0]?.main.temp - 273.15).toFixed(0);
+      const formattedTemperature = convertTemperature(temperatureInCelsius, selectedUnit);
+      setCurrentTemperature(formattedTemperature);
+    }
+  }, [selectedUnit, weatherData]);
+  
+
+console.log('su', selectedUnit);
+console.log('for', formattedTemperature);
 
   const weatherDescription = weatherData?.list[0]?.weather[0]?.main || "N/A";
-;
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const formattedTemperature = convertTemperature(currentTemperature, selectedUnit);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -215,7 +224,6 @@ const convertTemperature = (temp, unit) => {
       clearInterval(timer);
     };
   }, []);
-
 
   useEffect(() => {
     // Check AsyncStorage for the selected unit, use °C as the default if not found
@@ -230,13 +238,11 @@ const convertTemperature = (temp, unit) => {
         console.error('Error fetching temperature unit from local storage:', error);
       }
     };
-  
+
     fetchTemperatureUnit();
   }, []);
 
-  // Format the date and time using the city's timezone
   const formattedDayTime = new Intl.DateTimeFormat("en-US", {
-    // timeZone: cityTimeZone,
     weekday: "long",
     hour: "2-digit",
     minute: "2-digit",
@@ -247,7 +253,6 @@ const convertTemperature = (temp, unit) => {
     Clouds: images.clouds,
     Rain: images.rain,
   };
-  
 
   return (
     <View style={styles.container}>
@@ -260,7 +265,7 @@ const convertTemperature = (temp, unit) => {
       <View style={styles.textContainer}>
         <Text style={styles.cityName}>{weatherData?.city?.name}</Text>
         <Text style={styles.temperature}>
-          {currentTemperature}
+          {formattedTemperature}
           {selectedUnit}
           <Text style={styles.weatherDescription}> {weatherDescription}</Text>
         </Text>
@@ -271,4 +276,3 @@ const convertTemperature = (temp, unit) => {
 }
 
 export default WeatherScreenTop;
-
