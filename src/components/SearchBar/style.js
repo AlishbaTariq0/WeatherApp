@@ -81,7 +81,8 @@ searchButton: {
     borderRadius: wp(1.8),
     width: wp(50), // Customize the width as needed
     marginTop: wp(10), // Adjust the top margin as needed to position it below the three dots button
-    marginRight: wp(2)
+    marginRight: wp(2),
+    // height: wp(80)
   },
   dropdownTitle: {
     fontSize: wp(8),

@@ -333,12 +333,12 @@ const toggleTemperatureUnit = (temperatureUnit) => {
       <View style={Settingsstyles.container}>
         <Text style={Settingsstyles.header}>Settings</Text>
 
-        <Dropdown
+        {/* <Dropdown
           options={['°C', '°F']}
           selectedOption={isCelsius ? '°C' : '°F'}
           onSelect={(unit) => toggleTemperatureUnit(unit)}
           style={Settingsstyles.unitDropdown}
-        />
+        /> */}
         
       <View style={Settingsstyles.autoRefreshContainer}>
           <Text style={Settingsstyles.autoRefreshLabel}>

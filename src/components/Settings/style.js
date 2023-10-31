@@ -9,7 +9,7 @@ const Settingsstyles = StyleSheet.create({
       flex: 1,
       padding: wp(1),
       marginTop: wp(5), 
-      marginBottom: wp(-16),
+      // marginBottom: wp(-0.0000009),
       borderBottomWidth: wp(0.2),
       borderColor: 'gray',
       justifyContent: 'space-between',
@@ -63,7 +63,7 @@ settingsIcon: {
       color: 'white'
     },
     autoRefreshContainer: {
-        marginBottom: wp(121),
+        marginBottom: wp(125),
         color: 'white',
         position:'relative',
     },

@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   searchBar: searchBarReducer,
   favoriteCities: favoriteCitiesReducer,
   weather: weatherReducer,  
-  temperatureUnit: temperatureUnitReducer,
+  temperatureUnit: temperatureUnitReducer, // Add temperatureUnit to your root reducer
 });
 
 

@@ -24,22 +24,6 @@
 
 // export default Weather;
 
-
-// // api.js
-// const API_KEY = "6c43887627efe6c7855b89894139756e";
-
-// export const fetchWeatherData = async (cityName) => {
-//   const API = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}`;
-//   let res = await fetch(API);
-// console.log('response', API);
-//   if (res.status === 200) {
-//     return await res.json(); // Return the data
-//   } else {
-//     throw new Error("Failed to fetch weather data");
-//   }
-// };
-
-
 // // api.js
 const API_KEY = "6c43887627efe6c7855b89894139756e";
 
@@ -56,36 +40,3 @@ console.log('weather', API)
 };
 
 
-
-// // api.js
-// // api.js
-// const API_KEY = "6c43887627efe6c7855b89894139756e";
-
-// // Function to fetch weather data for a given city
-// export const fetchWeatherData = async (cityName) => {
-//   const API = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}`;
-//   console.log(API, 'abc');
-//   const res = await fetch(API);
-
-//   if (res.status === 200) {
-//     const data = await res.json();
-//     return data;
-//   } else {
-//     throw new Error("Failed to fetch weather data");
-//   }
-// };
-
-// // Function to fetch weekly weather data for a given city
-// export const fetchWeeklyWeatherData = async (cityName) => {
-//   // You can use the same API endpoint as fetchWeatherData if it provides weekly data
-//   const weeklyAPI = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}`;
-//   console.log(weeklyAPI, 'bcd');
-//   const res = await fetch(weeklyAPI);
-
-//   if (res.status === 200) {
-//     const data = await res.json();
-//     return data;
-//   } else {
-//     throw new Error("Failed to fetch weekly weather data");
-//   }
-// };

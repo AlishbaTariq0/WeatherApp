@@ -1,6 +1,6 @@
 // // actions.js
 
-import { TOGGLE_SEARCH_BAR, REMOVE_FAVORITE_CITY, ADD_FAVORITE_CITY, ADD_CITY_WEATHER_TO_FAVORITES, FETCH_HOURLY_WEATHER_REQUEST, FETCH_HOURLY_WEATHER_SUCCESS, FETCH_HOURLY_WEATHER_FAILURE, SET_TEMPERATURE_UNIT } from './actionType';
+import { TOGGLE_SEARCH_BAR, REMOVE_FAVORITE_CITY, ADD_FAVORITE_CITY, ADD_CITY_WEATHER_TO_FAVORITES, FETCH_HOURLY_WEATHER_REQUEST, FETCH_HOURLY_WEATHER_SUCCESS, FETCH_HOURLY_WEATHER_FAILURE, SET_TEMPERATURE_UNIT, UPDATE_CITY_TEMPERATURE_UNIT } from './actionType';
 import { FETCH_WEATHER_REQUEST , FETCH_WEATHER_SUCCESS , FETCH_WEATHER_FAILURE} from './actionType';
 import { ADD_TO_FAVORITES } from './actionType';
 
@@ -24,11 +24,6 @@ export const fetchWeatherFailure = (error) => ({
   type: FETCH_WEATHER_FAILURE,
   payload: error,
 });
-
-// export const addToFavorites = (cityData) => ({
-//   type: ADD_TO_FAVORITES,
-//   payload: cityData,
-// });
 
 export const addToFavorites = (cityData) => {
   console.log('Dispatching addToFavorites action with cityData:', cityData);
@@ -73,15 +68,9 @@ export const fetchHourlyWeatherFailure = (error) => ({
   payload: { error },
 });
 
-
-export const setTemperatureUnit = (unit) => ({
-  type: SET_TEMPERATURE_UNIT,
-  unit,
-});
-
-
-// // actions.js
-// export const setTemperatureUnit = (unit) => ({
-//   type: SET_TEMPERATURE_UNIT,
-//   payload: unit,
-// });
+export const setTemperatureUnit = (unit) => {
+  return {
+    type: SET_TEMPERATURE_UNIT,
+    unit,
+  };
+};

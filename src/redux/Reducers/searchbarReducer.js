@@ -4,9 +4,6 @@ import { TOGGLE_SEARCH_BAR } from "../Actions/actionType";
 const initialState = {
     isSearchBarVisible: true,
   };
-  
-
-
 
   const searchBarReducer = (state = initialState, action) => {
     switch (action.type) {
