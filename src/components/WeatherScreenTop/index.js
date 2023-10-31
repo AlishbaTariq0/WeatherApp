@@ -155,7 +155,6 @@
 
 // export default WeatherScreenTop;
 
-
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -174,13 +173,12 @@ import { setTemperatureUnit } from "../../redux/Actions";
 
 const WeatherScreenTop = ({ weatherData }) => {
   const navigation = useNavigation();
-  // const selectedUnit = useSelector((state) => state.temperatureUnit);
   const selectedUnit = useSelector((state) => state.temperatureUnit?.unit);
   const [currentTemperature, setCurrentTemperature] = useState("N/A");
   const dispatch = useDispatch();
 
-   // Function to convert temperature based on the selected unit
-   const convertTemperature = (temp, unit) => {
+  // Function to convert temperature based on the selected unit
+  const convertTemperature = (temp, unit) => {
     if (unit === '°F') {
       // Convert from Celsius to Fahrenheit
       return `${(temp * 9) / 5 + 32}°F`;
@@ -189,15 +187,7 @@ const WeatherScreenTop = ({ weatherData }) => {
     return `${temp}°C`;
   };
 
-  // // Update the temperature whenever the selected unit or weather data changes
-  // useEffect(() => {
-  //   if (weatherData) {
-  //     const temperatureInCelsius = (weatherData?.list[0]?.main.temp - 273.15).toFixed(0);
-  //     const formattedTemperature = convertTemperature(temperatureInCelsius, selectedUnit);
-  //     setCurrentTemperature(formattedTemperature);
-  //   }
-  // }, [selectedUnit, weatherData]);
-
+  // Update the temperature whenever the selected unit or weather data changes
   useEffect(() => {
     if (weatherData) {
       const temperatureInCelsius = (weatherData?.list[0]?.main.temp - 273.15).toFixed(0);
@@ -205,42 +195,9 @@ const WeatherScreenTop = ({ weatherData }) => {
       setCurrentTemperature(formattedTemperature);
     }
   }, [selectedUnit, weatherData]);
-  
-
-console.log('su', selectedUnit);
-console.log('for', formattedTemperature);
 
   const weatherDescription = weatherData?.list[0]?.weather[0]?.main || "N/A";
-
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
-  const formattedTemperature = convertTemperature(currentTemperature, selectedUnit);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDateTime(new Date());
-    }, 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Check AsyncStorage for the selected unit, use °C as the default if not found
-    const fetchTemperatureUnit = async () => {
-      try {
-        const storedUnit = await AsyncStorage.getItem('temperatureUnit');
-        if (storedUnit) {
-          // Dispatch the action to update the selected unit in the Redux store
-          dispatch(setTemperatureUnit(storedUnit));
-        }
-      } catch (error) {
-        console.error('Error fetching temperature unit from local storage:', error);
-      }
-    };
-
-    fetchTemperatureUnit();
-  }, []);
 
   const formattedDayTime = new Intl.DateTimeFormat("en-US", {
     weekday: "long",
@@ -265,9 +222,9 @@ console.log('for', formattedTemperature);
       <View style={styles.textContainer}>
         <Text style={styles.cityName}>{weatherData?.city?.name}</Text>
         <Text style={styles.temperature}>
-          {formattedTemperature}
-          {selectedUnit}
+          {currentTemperature}
           <Text style={styles.weatherDescription}> {weatherDescription}</Text>
+          <Text style={styles.temperatureUnit}> {selectedUnit}</Text>
         </Text>
         <Text style={styles.dateTime}>{formattedDayTime}</Text>
       </View>
